@@ -4,6 +4,6 @@ build:
     file: skaffold.yaml
 ingress:
   - serviceName: kararu
-    port: 8000
+    port: 8080
 deploy:
   implements: hurara/staro

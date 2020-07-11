@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: kararu
-        image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+        image: moruha
         env:
         - name: POSTGRES_USER
           value: mlflow
@@ -30,6 +30,6 @@ metadata:
   name: kararu
 spec:
   ports:
-  - port: 8000
+  - port: 8080
   selector:
     app: kararu
