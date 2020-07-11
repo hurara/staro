@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kararu-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app: kararu
+  template:
+    metadata:
+      labels:
+        app: kararu
+        pod.staroid.com/isolation: dedicated
+    spec:
+      containers:
+      - name: kararu
+        image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+        env:
+        - name: POSTGRES_USER
+          value: mlflow
+        - name: POSTGRES_PASSWORD
+          value: mlflow
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kararu
+spec:
+  ports:
+  - port: 8000
+  selector:
+    app: kararu
